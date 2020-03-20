@@ -48,8 +48,8 @@ def fakeInfo():
 def main():
     # Open Browser
     chrome_options = webdriver.ChromeOptions()
-    # chrome_options.add_argument('--proxy-server=https://%s' % PROXY)
-    driver = webdriver.Chrome()
+    chrome_options.add_argument("--start-maximized")
+    driver = webdriver.Chrome(options = chrome_options)
     driver.get("https://refer4.cash/wxlfy")
 
     # Click referral button
@@ -100,10 +100,11 @@ def main():
 for i in range(int(num)):
     main()
     registered = registered + 1
-    waitTime = random.randint(30, 90)
-    print("Waiting " + str(waitTime) + " seconds...")
     # print("Registrations so far: " + str(registered))
-    time.sleep(waitTime)
+    if (i != (int(num) - 1)):
+        waitTime = random.randint(30, 90)
+        print("Waiting " + str(waitTime) + " seconds...")
+        time.sleep(waitTime)
 
 # Check runtime
 endTime = time.time()
@@ -112,6 +113,9 @@ totalTime = endTime - startTime
 # Print output message with results
 print("Bot completed...")
 if (totalTime < 60):
-    print("Registered " + str(registered) + " account(s) in " + str(int(totalTime)) + " seconds")
+    if (registered > 1):
+        print("Registered " + str(registered) + " accounts in " + str(int(totalTime)) + " seconds")
+    else:
+        print("Registered " + str(registered) + " account in " + str(int(totalTime)) + " seconds")
 else:
-    print("Registered " + str(registered) + " account(s) in " + str(int(totalTime/60)) + " minutes and " + str(int(totalTime % 60)) + " seconds")
+    print("Registered " + str(registered) + " account in " + str(int(totalTime/60)) + " minutes and " + str(int(totalTime % 60)) + " seconds")
