@@ -32,6 +32,7 @@ seed(4321)
 shuffle(first_names)
 
 # Start message
+link = input("Please input referral link: ")
 num = input("How many registrations would you like to complete: ")
 print("Starting bot for " + num + " registrations...")
 
@@ -50,7 +51,7 @@ def main():
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument("--start-maximized")
     driver = webdriver.Chrome(options = chrome_options)
-    driver.get("https://refer4.cash/wxlfy")
+    driver.get(link)
 
     # Click referral button
     button = driver.find_element_by_id('submit')
