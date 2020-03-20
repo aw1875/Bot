@@ -1,4 +1,5 @@
 # Earnbucks Bot
+[![N|Solid](https://www.python.org/static/community_logos/python-powered-w-100x40.png)](https://nodesource.com/products/nsolid)
 
 A simple python bot to take advantage of earnbucks referrals. Incorporates Faker and Selenium to create fake profiles and register them for any given referral link.
 ### How to run
