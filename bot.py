@@ -17,6 +17,10 @@ import os
 import hashlib
 import time
 
+
+# Set random seed for each boot
+random.seed(time.time_ns())
+
 # Instantiate Faker
 fake = Faker()
 
@@ -37,13 +41,17 @@ num = input("How many registrations would you like to complete: ")
 print("Starting bot for " + num + " registrations...")
 
 def fakeInfo():
+    # Generate random number for fake info
+    numbers = random.sample(range(1,9999), 100)
+    random.shuffle(numbers)
+
     # Create fake information
-    fn = first_names[i]
-    un = fn + str(random.randint(1,999))
+    fn = first_names[0]
+    un = fn + str(numbers[0])
     emTemp = fake.email()
     emSplit = emTemp.split("@")
     em = un + "@" + emSplit[1]
-    ps = str(random.randint(1,9999)) + fn + str(random.randint(1,999))
+    ps = str(numbers[0]) + fn + str(numbers[0])
     return [fn, un, em, ps]
 
 def main():
@@ -103,9 +111,10 @@ for i in range(int(num)):
     registered = registered + 1
     # print("Registrations so far: " + str(registered))
     if (i != (int(num) - 1)):
-        waitTime = random.randint(30, 90)
-        print("Waiting " + str(waitTime) + " seconds...")
-        time.sleep(waitTime)
+        waitTime = random.sample(range(1,90), 50)
+        random.shuffle(waitTime)
+        print("Waiting " + str(waitTime[0]) + " seconds...")
+        time.sleep(waitTime[0])
 
 # Check runtime
 endTime = time.time()
